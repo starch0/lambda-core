@@ -33,7 +33,7 @@ By implementing these features, you will demonstrate how your chosen language ca
 
 We invite you to contribute by adding a folder for a programming language that is not yet present. To do so:
 
-1. *Create a new folder* under languages/ named after the language you are implementing (e.g., languages/haskell, languages/python, languages/go, etc.).
+1. *Create a new folder* under languages/firstletterorsymbol/ named after the language you are implementing (e.g., languages/h/haskell, languages/p/python, languages/g/go, etc.).
 2. Inside this folder, create:
      - A file named **lambda-core** with the appropriate file extension (e.g., lambda-core.py, lambda-core.hs, lambda-core.go).
      - A *README.md* that explains:
