@@ -3,7 +3,8 @@
             [combinators :refer :all]
             [booleans :refer :all]
             [numerals :refer :all]
-            [clojure.test :refer :all]))
+            [clojure.test :refer :all]
+            [print-macro :refer [is-print]]))
 
 (def factorial-gen
   ;; Church encoding of functions, such as 'λ', does not 
@@ -31,9 +32,9 @@
 
 (deftest Y-Combinator
   (testing "Y-factorial"
-    (is (= (toInt (Y-factorial (fromInt 9) one)) 362880))))
+    (is-print (= (toInt (Y-factorial (fromInt 9) one)) 362880))))
 
 (deftest Z-Combinator
   (testing "Z-factorial"
-    (is (= (toInt (Z-factorial (fromInt 9) one)) 362880))))
+    (is-print (= (toInt (Z-factorial (fromInt 9) one)) 362880))))
 
