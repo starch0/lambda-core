@@ -38,12 +38,10 @@ We invite you to contribute by adding a folder for a programming language that i
      - A file named **lambda-core** with the appropriate file extension (e.g., lambda-core.py, lambda-core.hs, lambda-core.go).
      - A *README.md* that explains:
          - How to run your implementation (any dependencies, compilation steps, interpreter requirements, etc.).
-         - How to verify or test that the boolean operations and numerals work as expected (you can include sample input and output or instructions for a quick test).
 
 3. *Open a Pull Request*:
      - Briefly describe what you did.
-     - Link to any official references or documentation used.
-     - If relevant, provide instructions in the PR body for maintainers.
+     - Link to any official references or documentation used if relevant.
 
 ---
 
@@ -61,7 +59,7 @@ Here’s a quick example workflow:
 
 1. *Fork* this repository.
 2. Create a branch named after your new language or a feature fix.
-3. Add a new folder languages/mylanguage.
+3. Add a new folder languages/letterorsymbol/mylanguage.
 4. Add lambda-core.my-lang and a supporting README.md.
 5. Commit and push your changes.
 6. *Open a Pull Request* from your fork’s branch into the main branch of this repository.
