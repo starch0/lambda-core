@@ -1,8 +1,5 @@
-(ns numerals)
-
-(defmacro λ
-  [args & body]
-  `(fn [~args] ~@body))
+(ns numerals
+  (:require [lambda :refer [λ]]))
 
 (def zero
   (λ f (λ x x)))

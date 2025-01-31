@@ -1,8 +1,5 @@
-(ns booleans)
-
-(defmacro λ
-  [args & body]
-  `(fn [~args] ~@body))
+(ns booleans
+  (:require [lambda :refer [λ]]))
 
 (def T
   (λ a (λ b a)))
