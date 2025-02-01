@@ -39,7 +39,7 @@ constexpr auto succ = [](const auto &n) {
 
 constexpr auto one = succ(zero);
 
-constexpr auto pred(const auto &n) {
+constexpr auto pred = [](const auto &n) {
   return [&n](const auto &f) {
     return [&n, &f](auto x) {
       return n([&f](const auto &g) {
@@ -47,7 +47,7 @@ constexpr auto pred(const auto &n) {
       })([x](const auto &u) { return x; })([](const auto &a) { return a; });
     };
   };
-}
+};
 
 namespace test {
 constexpr unsigned int convert(const auto &n) {
