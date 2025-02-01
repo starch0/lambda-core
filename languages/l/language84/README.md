@@ -15,3 +15,5 @@ Build
 Run
 
     $ ./lambda-core
+
+Note that there are some functions defined with and without syntactic sugar to show both forms and how they relate. Look for `BITTER`, `SWEET`, `SWEETEST`.
