@@ -39,6 +39,16 @@ constexpr auto succ = [](const auto &n) {
 
 constexpr auto one = succ(zero);
 
+constexpr auto pred(const auto &n) {
+  return [&n](const auto &f) {
+    return [&n, &f](auto x) {
+      return n([&f](const auto &g) {
+        return [&f, g](const auto &h) { return h(g(f)); };
+      })([x](const auto &u) { return x; })([](const auto &a) { return a; });
+    };
+  };
+}
+
 namespace test {
 constexpr unsigned int convert(const auto &n) {
   return n([](const auto &x) { return x + 1; })(0);
@@ -62,6 +72,6 @@ int main() {
 
   static_assert(church::test::convert(zero) == 0);
   static_assert(church::test::convert(succ(zero)) == 1);
-  // static_assert(church::test::convert(pred(succ(one))) == 1);
+  static_assert(church::test::convert(pred(succ(one))) == 1);
   church::test::print(one);
 }
