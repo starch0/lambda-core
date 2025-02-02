@@ -134,7 +134,7 @@ struct lambda church__succ_(struct lambda *ctx, struct lambda f)
 struct lambda church__succ(struct lambda *_, struct lambda n)
 {
 	struct lambda result = {church__succ_};
-	struct lambda *const ctx = malloc(2 * sizeof(n));
+	struct lambda *const ctx = malloc(sizeof(n));
 	ctx[0] = n;
 	result.ctx = ctx;
 	return result;
