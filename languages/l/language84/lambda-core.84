@@ -1,0 +1,203 @@
+Begin {
+    (show 'h1 "LOGIC")
+
+    (show 'h2 "TRUE/FALSE")
+    (show 'bool true)
+    (show 'bool false)
+
+    (show 'h2 "NOT")
+    (show 'bool (not true))
+    (show 'bool (not false))
+
+    (show 'h2 "AND")
+    (show 'bool ((and true) true))
+    (show 'bool ((and true) false))
+    (show 'bool ((and false) true))
+    (show 'bool ((and false) false))
+
+    (show 'h2 "OR")
+    (show 'bool ((or true) true))
+    (show 'bool ((or true) false))
+    (show 'bool ((or false) true))
+    (show 'bool ((or false) false))
+
+    (show 'h1 "CHURCH NUMERALS")
+
+    (show 'h2 "ZERO/SUCC")
+    (show 'nat zero)
+    (show 'nat one)
+    (show 'nat two)
+    (show 'nat three)
+
+    (show 'h2 "PRED")
+    (show 'nat (pred zero))
+    (show 'nat (pred one))
+    (show 'nat (pred two))
+    (show 'nat (pred three))
+
+    (show 'h2 "ADD")
+    (show 'nat ((add three) two))
+
+    (show 'h2 "MUL")
+    (show 'nat ((mul zero) two))
+    (show 'nat ((mul two) zero))
+    (show 'nat ((mul three) two))
+
+    (show 'h2 "FACT")
+    (show 'nat (fact zero))
+    (show 'nat (fact one))
+    (show 'nat (fact two))
+    (show 'nat (fact three))
+    (show 'nat (fact four))
+    (show 'nat (fact five))
+
+    (show 'h2 "FIB")
+    (show 'nat (fib zero))
+    (show 'nat (fib one))
+    (show 'nat (fib two))
+    (show 'nat (fib three))
+    (show 'nat (fib four))
+    (show 'nat (fib five))
+}
+
+Where
+
+Define (show class x)
+    Open Package "stdio" { :print_line }
+    Open Package "z" { :Infix + :show show_int }
+    In
+    Begin Match class {
+    | 'h1
+        (print_line "")
+        (print_line x)
+        (print_line "---")
+    | 'h2
+        (print_line "")
+        (print_line x)
+    | 'bool
+        (print_line ((x "t") "f"))
+    | 'nat
+        Define (increment x)
+            [x + 1]
+        (print_line (show_int ((x increment) 0)))
+    }
+
+Let fib
+    Define [[x] -> f] (f x)
+    In
+    Define ((f fib) n)
+        Define (case_small _)
+            one
+        Define (case_big _)
+            ((add (fib (pred n))) (fib (pred (pred n))))
+        In
+        [{} -> (((is_zero (pred n)) case_small) case_big)]
+    In
+    (z f)
+
+Let fact
+    Define [[x] -> f] (f x)
+    In
+    Define ((f fact) n)
+        Define (case_zero _)
+            one
+        Define (case_nonzero _)
+            ((mul (fact (pred n))) n)
+        In
+        [{} -> (((is_zero n) case_zero) case_nonzero)]
+    In
+    (z f)
+
+Where
+
+Define (not b)
+    ((b false) true)
+
+Define ((and b1) b2)
+    ((b1 b2) false)
+
+Define ((or b1) b2)
+    ((b1 true) b2)
+
+Define ((mul a) b)
+    Define ([[g] << f] x) (g (f x))
+    In
+    [a << b]
+
+Let add
+    Let BITTER
+        Func a Func b Func f Func x ((a f) ((b f) x))
+    Let SWEET
+        Define ([[g] << f] x) (g (f x))
+        In
+        Define (((add a) b) f)
+            [(a f) << (b f)]
+        In
+        add
+    In
+    BITTER
+
+Define (is_zero n)
+    ((n (const false)) true)
+
+Define (((pred n) f) x)
+    Define ((compose g) h)
+        (h (g f))
+    In
+    (((n compose) (const x)) id)
+
+Let one (succ zero)
+
+Let two (succ (succ zero))
+
+Let three (succ (succ (succ zero)))
+
+Let four (succ (succ (succ (succ zero))))
+
+Let five (succ (succ (succ (succ (succ zero)))))
+
+Where
+
+Let z
+    Let BITTER
+        Func f (Func x (f Func v ((x x) v)) Func x (f Func v ((x x) v)))
+    Let SWEET
+        Define (z f)
+            Define (x x)
+                Define (self v)
+                    ((x x) v)
+                In
+                (f self)
+            In
+            (x x)
+        In
+        z
+    Let SWEETEST
+        Define (z f)
+            Unfold {}
+                Define (self v)
+                    ((Fold) v)
+                In
+                (f self)
+        In
+        z
+    In
+    SWEETEST
+
+Define ((true x) y)
+    x
+
+Define ((false x) y)
+    y
+
+Define ((zero f) x)
+    x
+
+Define (((succ n) f) x)
+    (f ((n f) x))
+
+Define ((const x) u)
+    x
+
+Define (id x)
+    x

@@ -1,0 +1,19 @@
+
+(Note: You need x86 Linux to run this code.)
+
+Get Language 84 version 0.8 from https://norstrulde.org/language84/ and unpack.
+
+    $ wget https://norstrulde.org/language84/language84-0.8.tar.xz
+    $ tar xfJ language84-0.8.tar.xz
+
+Copy `lambda-core.84` and `local.make` from this repo into the `language84-0.8` directory created above.
+
+Build
+
+    $ make CC=clang
+
+Run
+
+    $ ./lambda-core
+
+Note that there are some functions defined with and without syntactic sugar to show both forms and how they relate. Look for `BITTER`, `SWEET`, `SWEETEST`.
