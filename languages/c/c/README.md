@@ -10,7 +10,7 @@ Does leak memory; add GC if you feel like it
 ## Compile and run
 
 ```sh
-gcc lambda-core.c -std=c99 -o app
+gcc lambda-core.c -std=c89 -pedantic -o app
 ./app
 ```
 
