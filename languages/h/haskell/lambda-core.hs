@@ -2,7 +2,7 @@ true' a b = a
 
 false' a b = b
 
-not' p = p true' false'
+not' p = p false' true'
 
 and' b1 b2 = b1 b2 false'
 
