@@ -233,15 +233,23 @@ int main()
 
 	assert(logic_test_convert(logic_true) == true);
 	assert(logic_test_convert(logic_false) == false);
+	assert(logic_test_convert(lambda_call(logic_not, logic_true)) == false);
+	assert(logic_test_convert(lambda_call(logic_not, logic_false)) == true);
 	assert(logic_test_convert(lambda_call(lambda_call(logic_and, logic_true), logic_true)) == true);
 	assert(logic_test_convert(lambda_call(lambda_call(logic_and, logic_true), logic_false)) == false);
+	assert(logic_test_convert(lambda_call(lambda_call(logic_and, logic_false), logic_true)) == false);
+	assert(logic_test_convert(lambda_call(lambda_call(logic_and, logic_false), logic_false)) == false);
 	assert(logic_test_convert(lambda_call(lambda_call(logic_or, logic_true), logic_true)) == true);
 	assert(logic_test_convert(lambda_call(lambda_call(logic_or, logic_true), logic_false)) == true);
+	assert(logic_test_convert(lambda_call(lambda_call(logic_or, logic_false), logic_true)) == true);
+	assert(logic_test_convert(lambda_call(lambda_call(logic_and, logic_false), logic_false)) == false);
 	logic_test_print(logic_true);
 
 	assert(church_test_convert(church_zero) == 0);
 	assert(church_test_convert(lambda_call(church_succ, church_zero)) == 1);
+	assert(church_test_convert(lambda_call(church_succ, lambda_call(church_succ, church_zero))) == 2);
 	assert(church_test_convert(lambda_call(church_pred, lambda_call(church_succ, church_one))) == 1);
+	assert(church_test_convert(lambda_call(church_pred, lambda_call(church_succ, lambda_call(church_succ, church_one)))) == 2);
 	church_test_print(church_one);
 
 	return EXIT_SUCCESS;
