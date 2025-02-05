@@ -1,0 +1,11 @@
+{
+  "name": "ts",
+  "module": "src/lambda-core.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
