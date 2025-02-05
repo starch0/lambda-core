@@ -38,7 +38,7 @@ read_bool (_or _true _false)
 read_bool (_or _false _true)
 read_bool (_or _false _false)
 
-printfn "\nCHURCH NUMERALS"
+printfn "CHURCH NUMERALS"
 printfn "----------------"
 printfn "ZERO/SUCC"
 read_church _zero
