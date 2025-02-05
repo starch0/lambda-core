@@ -24,6 +24,9 @@ const _one: ChurchNumeral = _successor(_zero);
 // Two
 const _two: ChurchNumeral = _successor(_one);
 
+// Three
+const _three: ChurchNumeral = _successor(_two);
+
 // Type tests
 type TestTrue = True extends True ? true : false;
 type TestFalse = False extends False ? true : false;
@@ -64,17 +67,23 @@ const predecessor = (n: ChurchNumeral): ChurchNumeral => {
     return pair[0];
 };
 
+const readChurchNumeral = (n: ChurchNumeral): number => {
+    return applyNumeral(n, (x: number) => x + 1, 0);
+};
+
 // Tests
 const testNumerals = () => {
     // Test basic numerals
-    console.log("Zero:", applyNumeral(_zero, (x: number) => x + 1, 0));  // Should be 0
-    console.log("One:", applyNumeral(_one, (x: number) => x + 1, 0));   // Should be 1
-    console.log("Two:", applyNumeral(_two, (x: number) => x + 1, 0));   // Should be 2
+    console.log("Zero:", readChurchNumeral(_zero));  // Should be 0
+    console.log("One:", readChurchNumeral(_one));   // Should be 1
+    console.log("Two:", readChurchNumeral(_two));   // Should be 2
+    console.log("Three:", readChurchNumeral(_three));   // Should be 3
 
     // Test predecessor
-    console.log("Pred Zero:", applyNumeral(predecessor(_zero), (x: number) => x + 1, 0));  // Should be 0
-    console.log("Pred One:", applyNumeral(predecessor(_one), (x: number) => x + 1, 0));    // Should be 0
-    console.log("Pred Two:", applyNumeral(predecessor(_two), (x: number) => x + 1, 0));    // Should be 1
+    console.log("Pred Zero:", readChurchNumeral(predecessor(_zero)));  // Should be 0
+    console.log("Pred One:", readChurchNumeral(predecessor(_one)));    // Should be 0
+    console.log("Pred Two:", readChurchNumeral(predecessor(_two)));    // Should be 1
+    console.log("Pred Three:", readChurchNumeral(predecessor(_three)));    // Should be 2
 };
 
 testNumerals();
