@@ -1,0 +1,70 @@
+# Logic
+(let _true (fun (x)
+  (fun (y &x) x)))
+(let _false (fun (x)
+  (fun (y) y)))
+(let _not (fun (b)
+  ((b _false) _true)))
+(let _and (fun (b1)
+  (fun (b2 &b1)
+    ((b1 b2) _false))))
+(let _or (fun (b1)
+  (fun (b2 &b2)
+    ((b1 _true) b2))))
+
+## Examples
+(let read_bool (fun (b)
+  (print ((b "true") "false"))))
+
+(print "Logic
+-----
+True / False")
+(read_bool _true)
+(read_bool _false)
+
+(print "Not")
+(read_bool (_not _true))
+(read_bool (_not _false))
+
+(print "And")
+(read_bool ((_and _true) _true))
+(read_bool ((_and _true) _false))
+(read_bool ((_and _false) _true))
+(read_bool ((_and _false) _false))
+
+(print "Or")
+(read_bool ((_or _true) _true))
+(read_bool ((_or _true) _false))
+(read_bool ((_or _false) _true))
+(read_bool ((_or _false) _false))
+
+# Church Numerals
+(let _zero (fun (f) (fun (x) x)))
+(let _succ (fun (n)
+  (fun (f &n)
+    (fun (x &n &f)
+      (f ((n f) x))))))
+(let _pred (fun (n)
+  (fun (f &n)
+    (fun (x &n &f)
+      (((n (fun (g &f) (fun (h &g &f) (h (g f))))) (fun (u &x) x)) (fun (a) a))))))
+(let _one (_succ _zero))
+
+## Examples
+(let read_church (fun (n)
+  (print ((n (fun (x) (+ x 1))) 0))))
+
+(print "
+Church Numerals
+---------------
+Zero / Succ")
+(read_church _zero)
+(read_church _one)
+(read_church (_succ _one))
+(read_church (_succ (_succ _one)))
+
+(print "Pred")
+(read_church (_pred _one))
+(read_church (_pred (_succ _one)))
+(read_church (_pred (_succ (_succ _one))))
+
