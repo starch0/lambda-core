@@ -64,7 +64,7 @@ fun main() {
     readBool(AND(FALSE)(FALSE)) // false
     readBool(AND(FALSE)(TRUE)) // false
     readBool(AND(TRUE)(FALSE)) // false
-    readBool(AND(TRUE)(TRUE)) // false
+    readBool(AND(TRUE)(TRUE)) // true
     
     println("OR")
     readBool(OR(FALSE)(FALSE)) // false
