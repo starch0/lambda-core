@@ -9,7 +9,7 @@
   (fun (b2 &b1)
     ((b1 b2) _false))))
 (let _or (fun (b1)
-  (fun (b2 &b2)
+  (fun (b2 &b1)
     ((b1 _true) b2))))
 
 ## Examples
