@@ -93,14 +93,24 @@ end
 -- Test Cases
 print(read_bool(true_lc)) -- true
 print(read_bool(false_lc)) -- false
-print(read_bool(and_lc(true_lc)(false_lc))) -- false
-print(read_bool(or_lc(false_lc)(true_lc))) -- true
 print(read_bool(not_lc(true_lc))) -- false
+print(read_bool(not_lc(false_lc))) -- true
+print(read_bool(and_lc(true_lc)(true_lc))) -- true
+print(read_bool(and_lc(true_lc)(false_lc))) -- false
+print(read_bool(and_lc(false_lc)(true_lc))) -- false
+print(read_bool(and_lc(false_lc)(false_lc))) -- false
+print(read_bool(or_lc(true_lc)(true_lc))) -- true
+print(read_bool(or_lc(true_lc)(false_lc))) -- true
+print(read_bool(or_lc(false_lc)(true_lc))) -- true
+print(read_bool(or_lc(false_lc)(false_lc))) -- false
 
 print(read_church(zero)) -- 0
-print(read_church(one)) -- 1
+print(read_church(succ(zero))) -- 1
 print(read_church(succ(one))) -- 2
+print(read_church(succ(succ(one)))) -- 3
 print(read_church(pred(one))) -- 0
 print(read_church(pred_v2(one))) -- 0
 print(read_church(pred(succ(one)))) -- 1
 print(read_church(pred_v2(succ(one)))) -- 1
+print(read_church(pred(succ(succ(one))))) -- 2
+print(read_church(pred_v2(succ(succ(one))))) -- 2
