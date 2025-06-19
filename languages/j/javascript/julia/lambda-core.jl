@@ -8,7 +8,16 @@ const _or    = b1 -> b2 -> b1(_true)(b2)
 # CHURCH NUMERALS
 const _zero = f -> x -> x
 const _succ = n -> f -> x -> f(n(f)(x))
-const _pred = n -> f -> x -> n(g -> h -> h(g(f)))(_u -> x)(_a -> a)
+# Predecessor function for Church numerals: returns n - 1
+const _pred = n -> f -> x -> begin
+    # Helper function to build the pair
+    pair = g -> h -> h(g(f))
+    # Initial value for the pair
+    initial = _u -> x
+    # Extract the first element of the pair
+    extract = _a -> a
+    n(pair)(initial)(extract)
+end
 const _one  = _succ(_zero)
 
 # HELPERS - not pure lambda calculus
