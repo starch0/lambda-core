@@ -10,3 +10,4 @@ From this directory, run:
 
 ```sh
 julia lamda-core.jl
+```
